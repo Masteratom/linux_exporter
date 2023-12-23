@@ -4,17 +4,12 @@ from helpers.LOAD_FILE import LOADFILE
 class CPUMETRICSE():
 
     def load_cpu(self):
-        # TODO: wyciągnoąć dane c CPU. Zrobić tak by nie trzeba było pobierać za każdym razem ile jest CPU. Zrobić to raz i koniec. Zbezpieczyć to.
-        cpu_list = []
-        quantity_cpu = LOADFILE.load(self, directory='/sys/devices/system/cpu/present')
-        quantity_cpu = quantity_cpu.split('-')
-        quantity_cpu = quantity_cpu[1].replace('\n', '')
         file = LOADFILE.load(self, directory='/proc/stat')
         file_parse = file.split('\n')
         for x in file_parse:
-            print(x)
-
-
+            if 'cpu' in x:
+                parse_x = x.split()
+                print(parse_x)
 
 # #Obliczenie:
 #
